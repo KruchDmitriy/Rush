@@ -17,16 +17,16 @@ public class Player implements IPlayer {
     private UUID id;
     private CarModel car;
 
-    public Player(BufferedReader br, PrintWriter pw) {
+    public Player(BufferedReader br, PrintWriter pw, GameWorld gameWorld) {
         this.br = br;
         this.pw = pw;
+        id = UUID.randomUUID();
+        this.gameWorld = gameWorld;
         thread = new Thread(this);
         thread.start();
     }
 
-    @Override
-    public void run() {
-        // Register player
+    private void register() {
         boolean receiveMsg = false;
         while (!receiveMsg) {
             String message = null;
@@ -45,9 +45,10 @@ public class Player implements IPlayer {
                 }
             }
         }
+    }
 
-        // Join or create race
-        receiveMsg = false;
+    private void startRace() {
+        boolean receiveMsg = false;
         while (!receiveMsg) {
             String message = null;
             try {
@@ -58,11 +59,42 @@ public class Player implements IPlayer {
             if (message != null) {
                 if (message.startsWith("createRace")) {
                     String[] data = message.split(" ");
-                    assert data.length == 3;
+
+                    assert data.length == 4;
+                    String name = data[1];
+                    MapName mapName = MapName.valueOf(data[2]);
+                    Integer maxPlayers = Integer.valueOf(data[3]);
+
+                    Race race = new Race(name, mapName, maxPlayers);
+                    gameWorld.addRace(race);
+                    race.addPlayer(this);
+                    this.race = race;
+
+                    receiveMsg = true;
+                } else if (message. startsWith("joinRace")) {
+                    String[] data = message.split(" ");
+                    assert data.length == 2;
+
+                    // TODO: check is that a correct
+                    Race race = (Race)gameWorld.findRace(UUID.fromString(data[1]));
+                    assert race != null;
+                    race.addPlayer(this);
+                    this.race = race;
 
                     receiveMsg = true;
                 }
             }
         }
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    @Override
+    public void run() {
+        register();
+        startRace();
+
     }
 }

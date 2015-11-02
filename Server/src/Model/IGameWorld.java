@@ -1,11 +1,12 @@
 package Model;
 
+import java.io.IOException;
 import java.util.UUID;
 
 public interface IGameWorld {
-    void waitForPlayers();
+    void waitForPlayers() throws IOException;
     void registerPlayer(IPlayer player);
     List<RaceHandle> getListRaces();
-    void createRace(IRace race);
+    void addRace(IRace race);
     IRace findRace(UUID raceId);
 }

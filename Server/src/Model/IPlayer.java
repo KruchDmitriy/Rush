@@ -1,5 +1,7 @@
 package Model;
 
-public interface IPlayer extends Runnable {
+import java.util.UUID;
 
+public interface IPlayer extends Runnable {
+    UUID getId();
 }
