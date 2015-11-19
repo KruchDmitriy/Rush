@@ -40,11 +40,13 @@ public class Client extends Application
         }
     }
 
-    public void start(Stage theStage)  {
-
+    public void start(Stage stage)  {
+        world.initialize(stage);
+        world.beginGameLoop();
+        stage.show();
     }
 
     public void stop() {
-
+        // TODO: Send to server that connection is over
     }
 }
