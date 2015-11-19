@@ -1,4 +1,4 @@
-package Model;
+package rush.server.model;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 import java.util.UUID;
 import java.util.Vector;
 
@@ -28,7 +29,7 @@ public class GameWorld implements IGameWorld {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            registerPlayer(new Player(bufferedReader, printWriter, this));
+            Connection c = new Connection(bufferedReader, printWriter, this);
         }
     }
 
@@ -52,5 +53,11 @@ public class GameWorld implements IGameWorld {
             }
         }
         return race;
+    }
+
+    @Override
+    public List<Race> getListRaces() {
+        // TODO: Is it safe?!
+        return races;
     }
 }
