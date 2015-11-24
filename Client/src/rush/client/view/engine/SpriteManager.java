@@ -1,4 +1,4 @@
-package rush.client.engine;
+package rush.client.view.engine;
 
 import java.util.*;
 

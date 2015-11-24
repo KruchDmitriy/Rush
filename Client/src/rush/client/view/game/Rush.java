@@ -1,4 +1,4 @@
-package rush.client.game;
+package rush.client.view.game;
 
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -7,8 +7,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import rush.client.engine.Sprite;
-import rush.client.engine.World;
+import rush.client.view.engine.Sprite;
+import rush.client.view.engine.World;
 
 import java.util.List;
 

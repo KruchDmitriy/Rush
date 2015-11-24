@@ -2,19 +2,30 @@ package rush.client;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import rush.client.engine.World;
-import rush.client.game.Rush;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import rush.client.model.Connection;
+import rush.client.view.engine.World;
+import rush.client.view.game.Rush;
+
+import java.io.*;
+import java.net.Socket;
 import java.util.Properties;
 
 public class Client extends Application
 {
-    public static World world = new Rush();
+    public World world = new Rush();
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private Connection createConnection(Properties communicationProperties) throws IOException{
+        String ip = communicationProperties.getProperty("ip");
+        String port = communicationProperties.getProperty("port");
+        Socket socket = new Socket(ip, Integer.valueOf(port));
+        PrintWriter printWriter = new PrintWriter(socket.getOutputStream(), true);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        //return new Connection(bufferedReader, printWriter);
+        return null;
     }
 
     public void init() {
@@ -24,9 +35,7 @@ public class Client extends Application
             String pathToConfig = this.getClass().getResource("config.properties").getPath();
             input = new FileInputStream(pathToConfig);
             communication.load(input);
-            System.out.println(communication.getProperty("ip"));
-            System.out.println(communication.getProperty("host"));
-            // TODO: Use config file to create access with server
+            Connection connection = createConnection(communication);
         } catch (IOException ex) {
             ex.printStackTrace();
         } finally {
