@@ -2,10 +2,14 @@ package rush.client.model;
 
 import rush.client.view.ICarView;
 
-/**
- * Created by anton on 11/24/2015.
- */
-public class Car implements ICar {
+public class Player implements IPlayer {
+    public enum Action {
+        TURN_LEFT,
+        TURN_RIGHT,
+        SPEED_UP,
+        SLOW_DOWN
+    }
+
     private String name;
     private Position position;
     public ICarView carView;

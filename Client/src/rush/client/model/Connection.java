@@ -6,18 +6,18 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Connection implements Runnable{
-    private IWorld world;
+public class Connection implements Runnable {
+    private IRace race;
 
     private BufferedReader br;
     private PrintWriter pw;
     private Thread thread;
     private boolean gameOver;
 
-    public Connection(BufferedReader br, PrintWriter pw, IWorld  world) {
+    public Connection(BufferedReader br, PrintWriter pw, IRace race) {
         this.br = br;
         this.pw = pw;
-        this.world = world;
+        this.race = race;
         thread = new Thread(this);
     }
 
@@ -36,7 +36,7 @@ public class Connection implements Runnable{
         thread.start();
     }
 
-    public void sendAction(PlayerAction action) {
+    public void sendAction(Player.Action action) {
 
     }
 
@@ -55,7 +55,7 @@ public class Connection implements Runnable{
                     float y = Float.valueOf(splitPos[1]);
                     positions.add(new Position(x,y));
                 }
-                world.setPlayersPositions(positions);
+                race.setPlayersPositions(positions);
             }
             catch (IOException e) {
                 e.printStackTrace();

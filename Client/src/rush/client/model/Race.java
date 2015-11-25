@@ -2,23 +2,20 @@ package rush.client.model;
 
 import java.util.List;
 
-/**
- * Created by anton on 11/24/2015.
- */
-public class World implements IWorld{
+public class Race implements IRace {
     Connection connection;
-    List<ICar> cars;
+    List<IPlayer> players;
 
     public synchronized void setPlayersPositions(List<Position> positions) throws Exception {
-        if (positions.size() != cars.size())
+        if (positions.size() != players.size())
             throw new Exception();
         for (int i = 0; i < positions.size(); i++) {
-            cars.get(i).setPosition(positions.get(i));
+            players.get(i).setPosition(positions.get(i));
         }
     }
 
     @Override
-    public void makePlayerAction(PlayerAction action) {
+    public void makePlayerAction(Player.Action action) {
         connection.sendAction(action);
     }
 }

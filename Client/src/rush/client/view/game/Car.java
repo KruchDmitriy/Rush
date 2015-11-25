@@ -1,11 +1,11 @@
 package rush.client.view.game;
 
-import rush.client.model.ICar;
+import rush.client.model.IPlayer;
 import rush.client.view.ICarView;
 import rush.client.view.engine.Sprite;
 
 public class Car extends Sprite implements ICarView {
-    ICar player;
+    IPlayer player;
     public Car() {
         // TODO: Load car image and assigned it to node
     }

@@ -2,7 +2,7 @@ package rush.client.model;
 
 import rush.client.view.ICarView;
 
-public interface ICar {
+public interface IPlayer {
 
     String getName();
 
