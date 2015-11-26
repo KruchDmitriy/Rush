@@ -1,5 +1,5 @@
 package rush.client.view;
 
-public interface ICarView {
+public interface IPlayerView {
     void positionChange();
 }

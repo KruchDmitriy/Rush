@@ -8,10 +8,12 @@ import java.util.List;
 
 public class Connection implements Runnable {
     private IRace race;
+    private IUser user;
 
     private BufferedReader br;
     private PrintWriter pw;
     private Thread thread;
+
     private boolean gameOver;
 
     public Connection(BufferedReader br, PrintWriter pw, IRace race) {

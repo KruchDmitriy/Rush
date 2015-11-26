@@ -4,9 +4,9 @@ import rush.client.model.IPlayer;
 import rush.client.view.ICarView;
 import rush.client.view.engine.Sprite;
 
-public class Car extends Sprite implements ICarView {
+public class PlayerView extends Sprite implements IPlayerView {
     IPlayer player;
-    public Car() {
+    public PlayerView() {
         // TODO: Load car image and assigned it to node
     }
 
@@ -22,6 +22,5 @@ public class Car extends Sprite implements ICarView {
 
         double x = 0;
         double y = 0;
-
     }
 }
