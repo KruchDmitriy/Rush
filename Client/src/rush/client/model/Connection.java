@@ -23,8 +23,10 @@ public class Connection implements Runnable {
         thread = new Thread(this);
     }
 
-    private void register() {
-
+    private void register(Player player) {
+        pw.write("registerPlayer" + " "
+                    + String.valueOf(player.getName()) + " "
+                    + String.valueOf(player.getCar()));
     }
 
     private void startRace() {

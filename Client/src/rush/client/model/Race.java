@@ -3,7 +3,8 @@ package rush.client.model;
 import java.util.List;
 
 public class Race implements IRace {
-    List<IPlayer> players;
+    private String name;
+    private List<IPlayer> players;
 
     public synchronized void setPlayersPositions(List<Position> positions) throws Exception {
         if (positions.size() != players.size())

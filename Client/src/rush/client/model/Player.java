@@ -9,10 +9,41 @@ public class Player implements IPlayer {
         SPEED_UP,
         SLOW_DOWN
     }
+    public enum CarModel {
+        black("black"),
+        blue("blue"),
+        green("green"),
+        cyan("cyan"),
+        red("red"),
+        magenta("magenta"),
+        yellow("yellow"),
+        white("white");
+
+        private String value;
+
+        CarModel(String value){
+            this.value = value;
+        }
+
+        public String toString(){
+            return value;
+        }
+
+        public static CarModel getByValue(String value){
+            for (final CarModel element : EnumSet.allOf(CarModel.class)) {
+                if (element.toString().equals(value)) {
+                    return element;
+                }
+            }
+            return null;
+        }
+    }
 
     private String name;
     private Position position;
-    public ICarView carView;
+    private CarModel car;
+
+    public IPlayerView playerView;
 
     @Override
     public String getName() {
@@ -32,13 +63,13 @@ public class Player implements IPlayer {
     @Override
     public void setPosition(Position position) {
         this.position = position;
-        carView.positionChange();
+        playerView.positionChange();
     }
 
     @Override
-    public void link(ICarView carView) throws Exception {
-        if (carView != null)
-            throw new Exception();
-        this.carView = carView;
+    public void link(IPlayerView playerView) {
+        if (playerView != null)
+            throw new NullPointerException("Invalid parameter");
+        this.playerView = playerView;
     }
 }
