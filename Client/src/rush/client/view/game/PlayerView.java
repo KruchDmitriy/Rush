@@ -1,7 +1,6 @@
 package rush.client.view.game;
 
 import rush.client.model.IPlayer;
-import rush.client.view.ICarView;
 import rush.client.view.engine.Sprite;
 
 public class PlayerView extends Sprite implements IPlayerView {

@@ -12,4 +12,9 @@ public class Race implements IRace {
             players.get(i).setPosition(positions.get(i));
         }
     }
+
+    @Override
+    public void makePlayerAction(Player.Action action) {
+
+    }
 }

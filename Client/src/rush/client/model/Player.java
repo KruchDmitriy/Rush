@@ -1,18 +1,11 @@
 package rush.client.model;
 
-import rush.client.view.ICarView;
+import rush.client.view.game.IPlayerView;
 
 public class Player implements IPlayer {
-    public enum Action {
-        TURN_LEFT,
-        TURN_RIGHT,
-        SPEED_UP,
-        SLOW_DOWN
-    }
-
+    public IPlayerView carView;
     private String name;
     private Position position;
-    public ICarView carView;
 
     @Override
     public String getName() {
@@ -20,13 +13,13 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public Position getPosition() {
-        return position;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
-    public void setName(String name) {
-        this.name = name;
+    public Position getPosition() {
+        return position;
     }
 
     @Override
@@ -36,9 +29,16 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public void link(ICarView carView) throws Exception {
-        if (carView != null)
+    public void link(IPlayerView carView) throws Exception {
+        if (carView == null)
             throw new Exception();
         this.carView = carView;
+    }
+
+    public enum Action {
+        TURN_LEFT,
+        TURN_RIGHT,
+        SPEED_UP,
+        SLOW_DOWN
     }
 }

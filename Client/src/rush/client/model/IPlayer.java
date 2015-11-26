@@ -1,16 +1,16 @@
 package rush.client.model;
 
-import rush.client.view.ICarView;
+import rush.client.view.game.IPlayerView;
 
 public interface IPlayer {
 
     String getName();
 
-    Position getPosition();
-
     void setName(String name);
+
+    Position getPosition();
 
     void setPosition(Position position);
 
-    void link(ICarView carView) throws Exception;
+    void link(IPlayerView carView) throws Exception;
 }
