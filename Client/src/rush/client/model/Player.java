@@ -1,6 +1,6 @@
 package rush.client.model;
 
-import rush.client.view.game.IPlayerView;
+import rush.client.view.IPlayerView;
 
 public class Player implements IPlayer {
     public IPlayerView carView;
@@ -25,7 +25,7 @@ public class Player implements IPlayer {
     @Override
     public void setPosition(Position position) {
         this.position = position;
-        carView.positionChange();
+        carView.playerChanged(this);
     }
 
     @Override

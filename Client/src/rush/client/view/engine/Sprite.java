@@ -4,5 +4,5 @@ import javafx.scene.Node;
 
 public abstract class Sprite {
     public Node node;
-    public abstract void update();
+    //public abstract void update();
 }

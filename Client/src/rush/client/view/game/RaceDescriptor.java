@@ -1,5 +1,4 @@
 package rush.client.view.game;
 
-public interface IConfigView {
-
+public class RaceDescriptor {
 }

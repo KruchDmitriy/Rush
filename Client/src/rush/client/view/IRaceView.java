@@ -1,4 +1,4 @@
-package rush.client.view.game;
+package rush.client.view;
 
 public interface IRaceView {
 

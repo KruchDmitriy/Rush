@@ -1,6 +1,6 @@
 package rush.client.model;
 
-import rush.client.view.game.IPlayerView;
+import rush.client.view.IPlayerView;
 
 public interface IPlayer {
 
