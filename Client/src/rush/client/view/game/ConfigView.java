@@ -29,22 +29,36 @@ public class ConfigView implements IConfigView, IState {
     };
     private IStateListener listener;
     private String toGame;
+    private String toExit;
+    private Scene playerCreationScene;
+    private Scene racesListScene;
+
+    EventHandler<ActionEvent> registerPlayer = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            String playerName = ((TextField)playerCreationScene.lookup("#playerName")).getPromptText();
+            if (playerName.length() == 0)
+                return;
+            //userController.registerPlayer(new PlayerDescriptor(playerName));
+            stage.setScene((racesListScene));
+        }
+    };
+
     EventHandler<ActionEvent> setRace = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
             RaceDescriptor choosenRace = racesListView.getSelectionModel().getSelectedItem();
             //userController.chooseRace(choosenRace);
-            //user.unsubscribe(this);
-            listener.returnStage(toGame);
+
         }
     };
-    private String toExit;
-    private Scene playerCreationScene;
-    private Scene racesListScene;
-    EventHandler<ActionEvent> registerPlayer = new EventHandler<ActionEvent>() {
+
+    EventHandler<ActionEvent> ready = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-            stage.setScene((racesListScene));
+            //userController.ready();
+            //user.unsubscribe(this);
+            listener.returnStage(toGame);
         }
     };
 
@@ -54,9 +68,10 @@ public class ConfigView implements IConfigView, IState {
         //user.subscribe(this);
         FlowPane playerCreationPane = new FlowPane();
         TextField forPlayerName = new TextField();
-        Button regiterPlayerButton = new Button("Register player");
-        regiterPlayerButton.setOnAction(registerPlayer);
-        playerCreationPane.getChildren().addAll(forPlayerName, regiterPlayerButton);
+        forPlayerName.setId("playerName");
+        Button registerPlayerButton = new Button("Register player");
+        registerPlayerButton.setOnAction(registerPlayer);
+        playerCreationPane.getChildren().addAll(forPlayerName, registerPlayerButton);
         playerCreationScene = new Scene(playerCreationPane, 640, 480);
 
         FlowPane racesListPane = new FlowPane();
@@ -86,4 +101,21 @@ public class ConfigView implements IConfigView, IState {
         //racesList = user.getListOfRaces();
         racesListView.setItems(FXCollections.observableArrayList(racesList));
     }
+
+//    @Override
+//    public PlayerDescriptor getPlayerDescriptor() {
+//        while (!playerCreated) {}
+//        return playerDescriptor;
+//    }
+//
+//    @Override
+//    public RaceDescriptor getChosenRace() {
+//        while (!raceChosen) {}
+//        return raceDescriptor;
+//    }
+//
+//    @Override
+//    public void waitWhenReady() {
+//        while (!ready) {}
+//    }
 }
